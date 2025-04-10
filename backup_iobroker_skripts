@@ -3,8 +3,8 @@
 # Quell- und Zielverzeichnisse festlegen
 SOURCE_DIR="/opt/iobroker/skriptMirror/"
 TARGET_DIR="/opt/iobroker/backupSkripts/"
-REPO_NAME="iobroker-Skripts-AmRing"
-GITHUB_USER="bloop16"
+REPO_NAME="[Repo Name]"
+GITHUB_USER="[Benutzer Name]"
 SCRIPT_PATH="/usr/local/bin/backup_iobroker_skripts.sh"
 
 # Konfiguration
