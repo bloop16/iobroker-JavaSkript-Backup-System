@@ -51,11 +51,20 @@ Automatisches Backup-System für ioBroker JavaScript-Dateien mit Versionskontrol
 ### Sensitive Daten
 
 - Erkennt und schwärzt Passwörter, API-Keys und andere sensible Daten in JavaScript-Dateien.
+Variablen (const, Var, let), Direktzuweisungen, Objekt-Eigenschaften, Json Style wird auf folgende Textphrasen überprüft:
+  ''' * password'''
+   * pass
+   * passwort
+   * passwd
+   * user
+   * benutzer
+   * apikey
+   * secret
 
 
 ## Installation
 
-1. Skript herunterladen (empfohlen):
+1. Skript herunterladen:
    ```bash
    sudo wget -O /usr/local/bin/backup_iobroker_skripts.sh https://raw.githubusercontent.com/bloop16/iobroker-JavaSkript-Backup-System/main/backup_iobroker_skripts.sh
    ```
@@ -70,6 +79,10 @@ sudo chmod +x /usr/local/bin/backup_iobroker_skripts.sh
 sudo apt-get update
 sudo apt-get install git inotify-tools
 ```
+
+4. JavaSkript Adapter Spiegelungen Aktivieren
+In den Einstellungen des JavaSkript Adapters muss die Spiegelung aktiviert werden. Der Dafür eingetragene Ordner ist in den den Skript Konfigurationen anzupassen. ('''SOURCE_DIR''')
+
 
 4. SSH-Schlüssel für GitHub generieren (optional):
 ```bash
@@ -90,10 +103,7 @@ ssh-add ~/.ssh/id_ed25519
 
 6. GitHub-Repository erstellen (optional):
    - Name: `Repository Name`
-
-7. JavaSkript Adapter Spiegelungen Aktivieren
-In den Einstellungen des JavaSkript Adapters muss die Spiegelung aktiviert werden.
-
+     
 
 ## Konfiguration
 
