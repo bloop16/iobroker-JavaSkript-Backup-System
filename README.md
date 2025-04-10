@@ -51,15 +51,15 @@ Automatisches Backup-System für ioBroker JavaScript-Dateien mit Versionskontrol
 ### Sensitive Daten
 
 - Erkennt und schwärzt Passwörter, API-Keys und andere sensible Daten in JavaScript-Dateien.
-Variablen (const, Var, let), Direktzuweisungen, Objekt-Eigenschaften, Json Style wird auf folgende Textphrasen überprüft:
-  ''' * password'''
-   * pass
-   * passwort
-   * passwd
-   * user
-   * benutzer
-   * apikey
-   * secret
+Variablen (```const, Var, let```), Direktzuweisungen, Objekt-Eigenschaften, Json Style wird auf folgende Textphrasen überprüft:
+   * ```password```
+   * ```pass```
+   * ```passwort```
+   * ```passwd```
+   * ```user```
+   * ```benutzer```
+   * ```apikey```
+   * ```secret```
 
 
 ## Installation
@@ -81,7 +81,7 @@ sudo apt-get install git inotify-tools
 ```
 
 4. JavaSkript Adapter Spiegelungen Aktivieren
-In den Einstellungen des JavaSkript Adapters muss die Spiegelung aktiviert werden. Der Dafür eingetragene Ordner ist in den den Skript Konfigurationen anzupassen. ('''SOURCE_DIR''')
+In den Einstellungen des JavaSkript Adapters muss die Spiegelung aktiviert werden. Der Dafür eingetragene Ordner ist in den den Skript Konfigurationen anzupassen. ```SOURCE_DIR```
 
 
 4. SSH-Schlüssel für GitHub generieren (optional):
