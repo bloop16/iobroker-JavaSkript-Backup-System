@@ -4,12 +4,12 @@
 SOURCE_DIR="/opt/iobroker/skriptMirror/"
 TARGET_DIR="/opt/iobroker/backupSkripts/"
 REPO_NAME="iobroker-Skripts-AmRing"
-GITHUB_USER="[UserName]"
+GITHUB_USER="bloop16"
 SCRIPT_PATH="/usr/local/bin/backup_iobroker_skripts.sh"
 
 # Konfiguration
 MAX_BACKUPS=10           # Maximale Anzahl der Backups pro Skript
-USE_GIT=false           # Git-Integration aktivieren/deaktivieren
+USE_GIT=true           # Git-Integration aktivieren/deaktivieren
 USE_VERSIONS=true       # Versionierung mit Zeitstempeln aktivieren/deaktivieren
 
 # Sensitive Begriffe definieren
@@ -107,18 +107,20 @@ if [ ! -f "${TARGET_DIR}.initialized" ]; then
     echo "Erster Start: Alle Dateien werden gesichert"
     
     # Fuer jede .js Datei im Quellverzeichnis
-    find "${SOURCE_DIR}" -type f -name "*.js" | while read FILE; do
+    find "${SOURCE_DIR}" -type f -name "*.js" -o -name "*.ts"| while read FILE; do
         REL_PATH=$(realpath --relative-to="${SOURCE_DIR}" "${FILE}")
         REL_DIR=$(dirname "${REL_PATH}")
-        SCRIPT_NAME=$(basename "${FILE}" .js)
+        SCRIPT_NAME=$(basename "${FILE}")
+        EXTENSION="${SCRIPT_NAME##*.}"
+        SCRIPT_NAME=$(basename "${SCRIPT_NAME}" ".$EXTENSION")
         
         if [ "$USE_VERSIONS" = true ]; then
             SCRIPT_DIR="${TARGET_DIR}${REL_DIR}/${SCRIPT_NAME}/"
             TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-            BACKUP_FILE="${SCRIPT_DIR}${SCRIPT_NAME}_${TIMESTAMP}.js"
+            BACKUP_FILE="${SCRIPT_DIR}${SCRIPT_NAME}_${TIMESTAMP}.${EXTENSION}"
         else
             SCRIPT_DIR="${TARGET_DIR}${REL_DIR}/"
-            BACKUP_FILE="${SCRIPT_DIR}${SCRIPT_NAME}.js"
+            BACKUP_FILE="${SCRIPT_DIR}${SCRIPT_NAME}.${EXTENSION}"
         fi
         
         mkdir -p "${SCRIPT_DIR}"
@@ -138,22 +140,24 @@ fi
 inotifywait -m -r -e modify,create,delete "${SOURCE_DIR}" --format '%w%f' | while read FILE
 do
     # Nur .js Dateien verarbeiten
-    if [[ "${FILE}" != *.js ]]; then
+    if [[ "${FILE}" != *.js && "${FILE}" != *.ts ]]; then
         continue
     fi
 
     # Zielstruktur aufbauen
     REL_PATH=$(realpath --relative-to="${SOURCE_DIR}" "${FILE}")
     REL_DIR=$(dirname "${REL_PATH}")
-    SCRIPT_NAME=$(basename "${FILE}" .js)
+    SCRIPT_NAME=$(basename "${FILE}")
+    EXTENSION="${SCRIPT_NAME##*.}"
+    SCRIPT_NAME=$(basename "${SCRIPT_NAME}" ".$EXTENSION")
     
     if [ "$USE_VERSIONS" = true ]; then
         SCRIPT_DIR="${TARGET_DIR}${REL_DIR}/${SCRIPT_NAME}/"
         TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-        BACKUP_FILE="${SCRIPT_DIR}${SCRIPT_NAME}_${TIMESTAMP}.js"
+        BACKUP_FILE="${SCRIPT_DIR}${SCRIPT_NAME}_${TIMESTAMP}.${EXTENSION}"
     else
         SCRIPT_DIR="${TARGET_DIR}${REL_DIR}/"
-        BACKUP_FILE="${SCRIPT_DIR}${SCRIPT_NAME}.js"
+        BACKUP_FILE="${SCRIPT_DIR}${SCRIPT_NAME}.${EXTENSION}"
     fi
 
     # Wenn die Datei existiert, sichere sie
