@@ -112,7 +112,7 @@ Bei Bedarf folgende Variablen im Skript anpassen:
 ```bash
 SOURCE_DIR="/opt/iobroker/skriptMirror/"
 TARGET_DIR="/opt/iobroker/backupSkripts/"
-REPO_NAME="iobroker-Skripts-AmRing"
+REPO_NAME="[RepoName]"
 GITHUB_USER="[UserName]"
 SCRIPT_PATH="/usr/local/bin/backup_iobroker_skripts.sh"
 
