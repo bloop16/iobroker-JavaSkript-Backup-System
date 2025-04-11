@@ -65,7 +65,8 @@ Variablen (```const, Var, let```), Direktzuweisungen, Objekt-Eigenschaften, Json
 ## Installation
 
 1. Skript herunterladen und installieren:
-   ```bash
+
+```bash
 # Git-Repository klonen
 git clone https://github.com/bloop16/iobroker-JavaSkript-Backup-System.git
 
@@ -74,10 +75,8 @@ mv iobroker-JavaSkript-Backup-System/backup_iobroker_skripts /usr/local/bin/back
 
 # Ordner löschen
 rm -rf iobroker-JavaSkript-Backup-System
-   ```
 
-2. Skript ausführbar machen:
-```bash
+# Skript ausführbar machen:
 sudo chmod +x /usr/local/bin/backup_iobroker_skripts.sh
 ```
 
