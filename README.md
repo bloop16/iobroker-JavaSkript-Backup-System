@@ -90,14 +90,27 @@ sudo apt-get install git inotify-tools
 In den Einstellungen des JavaSkript Adapters muss die Spiegelung aktiviert werden. Der Dafür eingetragene Ordner ist in den den Skript Konfigurationen anzupassen. ```SOURCE_DIR```
 
 
-4. SSH-Schlüssel für GitHub generieren (optional):
+### Git-Konfiguration (optional)
+
+Falls die Git-Integration genutzt werden soll, muss git korrekt konfiguriert sein. Die Konfiguration kann so vorgenommen werden:
+
+```bash
+ # Git-Benutzernamen setzen
+git config --global user.name "Ihr GitHub-Benutzername"
+
+# Git-E-Mail setzen
+git config --global user.email "ihre-github-email@example.com"
+Diese Konfiguration stellt sicher, dass Commits mit den korrekten Benutzerinformationen versehen werden.
+```
+
+5. SSH-Schlüssel für GitHub generieren (optional):
 ```bash
 ssh-keygen -t ed25519 -C "ihre-github-email@example.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 ```
 
-5. SSH-Schlüssel zu GitHub hinzufügen (optional):
+6. SSH-Schlüssel zu GitHub hinzufügen (optional):
    - Öffentlichen Schlüssel kopieren:
      ```bash
      cat ~/.ssh/id_ed25519.pub
@@ -107,7 +120,7 @@ ssh-add ~/.ssh/id_ed25519
    - Kopierten Schlüssel einfügen
    - Mit Titel "IobrokerBackup" speichern
 
-6. GitHub-Repository erstellen (optional):
+7. GitHub-Repository erstellen (optional):
    - Name: `Repository Name`
      
 
