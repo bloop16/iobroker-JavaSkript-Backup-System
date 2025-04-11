@@ -11,6 +11,7 @@ SCRIPT_PATH="/usr/local/bin/backup_iobroker_skripts.sh"
 MAX_BACKUPS=10           # Maximale Anzahl der Backups pro Skript
 USE_GIT=true           # Git-Integration aktivieren/deaktivieren
 USE_VERSIONS=true       # Versionierung mit Zeitstempeln aktivieren/deaktivieren
+SELF_BACKUP=false        # Backup des Skripts selbst aktivieren/deaktivieren
 
 # Sensitive Begriffe definieren
 SENSITIVE_PATTERNS=(
@@ -107,14 +108,18 @@ mkdir -p "${TARGET_DIR}"
 git_init
 
 # Nach Git-Init das Skript initial sichern
-backup_self
+if [ "$SELF_BACKUP" = true ]; then
+    backup_self
+fi
 
 # Ueberwache auch das Skript selbst im Hintergrund
-(inotifywait -m -e modify "${SCRIPT_PATH}" | while read path action file
-do
-    sleep 1 # Warte 1 Sekunde
-    backup_self
-done) &
+if [ "$SELF_BACKUP" = true ]; then
+    (inotifywait -m -e modify "${SCRIPT_PATH}" | while read path action file
+    do
+        sleep 1 # Warte 1 Sekunde
+        backup_self
+    done) &
+fi
 
 # Beim ersten Start alle Inhalte kopieren
 if [ ! -f "${TARGET_DIR}.initialized" ]; then
