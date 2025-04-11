@@ -66,7 +66,7 @@ Variablen (```const, Var, let```), Direktzuweisungen, Objekt-Eigenschaften, Json
 
 1. Skript herunterladen:
    ```bash
-   sudo wget -O /usr/local/bin/backup_iobroker_skripts.sh https://raw.githubusercontent.com/bloop16/iobroker-JavaSkript-Backup-System/main/backup_iobroker_skripts.sh
+   sudo wget -O /usr/local/bin/backup_iobroker_skripts.sh https://github.com/bloop16/iobroker-JavaSkript-Backup-System/blob/v1.0.0/backup_iobroker_skripts
    ```
 
 2. Skript ausführbar machen:
