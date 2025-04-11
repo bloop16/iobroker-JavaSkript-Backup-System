@@ -9,7 +9,7 @@ SCRIPT_PATH="/usr/local/bin/backup_iobroker_skripts.sh"
 
 # Konfiguration
 MAX_BACKUPS=10           # Maximale Anzahl der Backups pro Skript
-USE_GIT=true           # Git-Integration aktivieren/deaktivieren
+USE_GIT=false           # Git-Integration aktivieren/deaktivieren
 USE_VERSIONS=true       # Versionierung mit Zeitstempeln aktivieren/deaktivieren
 SELF_BACKUP=false        # Backup des Skripts selbst aktivieren/deaktivieren
 
