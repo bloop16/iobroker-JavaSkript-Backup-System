@@ -201,3 +201,18 @@ sudo systemctl start backup-iobroker-skripts.service
 ```bash
 sudo systemctl status backup-iobroker-skripts.service
 ```
+
+## Changelog
+
+### Version 1.1.0
+- Sensitivitätsschutz aktivierbar/deaktivierbar über `SANITIZE_SENSITIVE`
+
+### Version 1.0.0
+- Initiale Version
+- Automatisches Backup von ioBroker JavaScript-Dateien
+- Erhaltung der Ordnerstruktur
+- Optionale Versionierung mit Zeitstempeln
+- Automatische Überwachung von Dateiänderungen
+- Automatische Bereinigung alter Versionen
+- Git-Integration mit automatischen Commits
+- Konfigurierbare Anzahl von Backup-Versionen
